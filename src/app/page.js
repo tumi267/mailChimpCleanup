@@ -1,53 +1,44 @@
 import Image from 'next/image'
 import styles from './page.module.css'
 import BtnCall from './components/BtnCall/BtnCall'
+import AddBulk from './components/BtnCall/AddBulk'
+import GetAudience from './components/BtnCall/GetAudience'
+import CreateAudiance from './components/BtnCall/CreateAudiance'
+import DeleteAudiance from './components/BtnCall/DeleteAudiance'
+import AddContact from './components/BtnCall/AddContact'
+import CheckSub from './components/BtnCall/CheckSub'
+import Unsubcribe from './components/BtnCall/Unsubcribe'
+import GetAllMembers from './components/BtnCall/GetAllMembers'
 
 
 export default function Home() {
 
   return (
     <main className={styles.main}>
-    
-      <h2>Audiance</h2>
+    <GetAudience/>
+    <hr/>
+    <CreateAudiance/>
+    <hr/>
+    <AddBulk/>
+    <hr/>
+    <DeleteAudiance/>
+    <hr/>
+    <AddContact/>
+    <hr/>
+    <CheckSub/>
+    <hr/>
+    <Unsubcribe/>
+    <GetAllMembers/>
+
+     <h2>clean up</h2>
       <div className={styles.description}>
-      <BtnCall
-      call='getAudiance'
-      name='get'/>
-      <BtnCall
-      call='createAudiance'
-      name='create'/>
-     <BtnCall
-     call='deleteAudiance'
-     name='delete'/>
-     <BtnCall
-     call='addContactsAudiance'
-     name='Add Contacts Audiance'/>
-     <BtnCall
-     call='checkSubcriber'
-     name='Check Subcriber status'
-     />
-     <BtnCall
-     call='unSubcribeAud'
-     name='Unsubcribe Audiance member'
-     />
-     <BtnCall
-     call='addBulkContact'
-     name='Add Bulk'
-     />
-     <BtnCall
-     call='getAllMembers'
-     name='get All Members'
-     />
-      </div>
-      <h2>clean up</h2>
-      <div className={styles.description}>
-      <BtnCall
-      call='cleanUp'
-      name='clean up'
-      />
-      </div>
+        <BtnCall
+        call='cleanUp'
+        name='clean up'
+        />
+        </div>
       <h2>tags</h2>
-      <div className={styles.description}>        
+    <div className={styles.description}>        
       <BtnCall
       call='tagAudiance'
       name='tag audiance'

@@ -14,30 +14,17 @@ export async function POST(req) {
 
     try {
         // Parse the JSON body from the incoming request
-        // const data = await req.json();
+        const data = await req.json();
         // dynamic data passed by call
-        // const { event, footerContactInfo, campaignDefaults } = data; // Destructure necessary data
-
+   
+        const{name,company,address1,city,state,zip,country,from_name,from_email,subject}=data 
         // dummie data
         const event = {
-            name: "clean"
+            name
           };
           
-          const footerContactInfo = {
-            company: "Zamani",
-            address1: "21 smit st",
-            city: "johannesburg",
-            state: "guetang",
-            zip: "2000",
-            country: "RSA"
-          };
-          
-          const campaignDefaults = {
-            from_name: "Gettin' Together",
-            from_email: "tumidev267@gmail.com",
-            subject: "testing cleanup",
-            language: "EN_US"
-          };
+          const footerContactInfo = {company,address1,city,state,zip,country};
+          const campaignDefaults = {from_name,from_email,subject,language: "EN_US"};
         // Make a request to Mailchimp to create a new audience (list)
         const response = await mailchimp.lists.createList({
             name: event.name,                  // Audience name (from event object)

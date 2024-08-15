@@ -8,25 +8,31 @@ export async function POST(req){
         apiKey: process.env.mailChimp,  // Mailchimp API key
         server: process.env.prefix,     // Mailchimp server prefix (e.g., 'us1')
     });
+    const reqData=await req.json()
+    const {name,firstName,lastName,email,email_from,}=reqData
     try {
-        const listdata=await fetch(`${process.env.DomainURL}/api/getAudiance`,{
-            method:"POST",
-            headers:{
-                'Content-Type':'application/json'
+        // Fetch the audience data
+        const listdata = await fetch(`${process.env.DomainURL}/api/getAudiance`, {
+            method: "POST",
+            headers: {
+                'Content-Type': 'application/json'
             }
-        })
-        const {data}=await listdata.json()
-        const {lists}=data
-        const listId = lists[0].id;
+        });
+
+        const { data } = await listdata.json();
+        const { lists } = data;
+        const truelist=lists.filter((e)=>{return e.name==name})
+        if (truelist.length === 0) {
+            // Handle the case where the audience does not exist
+            
+            return NextResponse.json({ msg: 'Audience does not exist.' }, { status: 404 });
+        }
+        
+        const listId=truelist[0].id
         // will be user input
-       const subscribingUser = {
-        firstName: "tumi",
-        lastName: "matlala",
-        email: "itu.matlala4@gmail.com"
-        };
-        // const body = await req.json();
-        const email = "itu.matlala4@gmail.com"; // Use provided email or a default
-        const subscriberHash = md5(email.toLowerCase());
+       const subscribingUser = {firstName,lastName,email};
+
+        const subscriberHash = md5(email_from.toLowerCase());
 
         const response = await mailchimp.lists.setListMember(listId,subscriberHash ,{
             email_address: subscribingUser.email,

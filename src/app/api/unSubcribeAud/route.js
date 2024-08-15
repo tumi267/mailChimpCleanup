@@ -8,8 +8,10 @@ export async function POST(req) {
         apiKey: process.env.mailChimp,  // Mailchimp API key
         server: process.env.prefix,     // Mailchimp server prefix (e.g., 'us1')
     });
+    const reqData=await req.json()
+    const {name,email}=reqData
     try {
-        // Fetch list data from your API
+        // Fetch the audience data
         const listdata = await fetch(`${process.env.DomainURL}/api/getAudiance`, {
             method: "POST",
             headers: {
@@ -19,11 +21,14 @@ export async function POST(req) {
 
         const { data } = await listdata.json();
         const { lists } = data;
-        const listId = lists[0].id;
-
-        // Extract email from request body (assuming it is sent as JSON)
+        const truelist=lists.filter((e)=>{return e.name==name})
+        if (truelist.length === 0) {
+            // Handle the case where the audience does not exist
+            
+            return NextResponse.json({ msg: 'Audience does not exist.' }, { status: 404 });
+        }
         
-        const email = "itu.matlala4@gmail.com"; // Use a default if no email is provided
+        const listId=truelist[0].id
         const subscriberHash = md5(email.toLowerCase());
 
         // Update the subscription status to "unsubscribed"
