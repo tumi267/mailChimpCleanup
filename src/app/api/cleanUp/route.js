@@ -8,7 +8,7 @@ export async function POST(req) {
         apiKey: process.env.mailChimp,  // Mailchimp API key
         server: process.env.prefix,     // Mailchimp server prefix (e.g., 'us1')
     });
-
+    const details= await req.json()
     try {
         // Fetch the list of all members
         const listdata = await fetch(`${process.env.DomainURL}/api/getAllMembers`, {
@@ -40,12 +40,13 @@ export async function POST(req) {
         }).map(e => emailTracker[e.member.email_address]);
 
         // Create a new audience
-        // has to take in body
+   
         const newAudience = await fetch(`${process.env.DomainURL}/api/createAudiance`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
-            }
+            },
+            body:JSON.stringify(details)
         });
 
         const res = await newAudience.json();

@@ -9,6 +9,7 @@ import AddContact from './components/BtnCall/AddContact'
 import CheckSub from './components/BtnCall/CheckSub'
 import Unsubcribe from './components/BtnCall/Unsubcribe'
 import GetAllMembers from './components/BtnCall/GetAllMembers'
+import Cleanup from './components/BtnCall/Cleanup'
 
 
 export default function Home() {
@@ -28,8 +29,10 @@ export default function Home() {
     <CheckSub/>
     <hr/>
     <Unsubcribe/>
+    <hr/>
     <GetAllMembers/>
-
+    <hr/>
+    <Cleanup/>
      <h2>clean up</h2>
       <div className={styles.description}>
         <BtnCall
