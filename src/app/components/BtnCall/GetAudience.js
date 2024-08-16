@@ -32,17 +32,7 @@ function GetAudience() {
       console.error('Error fetching data:', error);
     }
   };
-  const handleSubmit = async (event) => {
-    event.preventDefault()
-    // Handle the submission of the form with the audience data
-    const res=await fetch('/api/addBulkContact',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify(audiance)
-    })
-    const msg=await res.json()
-    alert(msg.msg)
-  }
+
   return (
     <div>
       <button onClick={getAudience}>Get Audience</button>

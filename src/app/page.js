@@ -10,6 +10,11 @@ import CheckSub from './components/BtnCall/CheckSub'
 import Unsubcribe from './components/BtnCall/Unsubcribe'
 import GetAllMembers from './components/BtnCall/GetAllMembers'
 import Cleanup from './components/BtnCall/Cleanup'
+import TagAudiance from './components/BtnCall/TagAudiance'
+import GetTagedAudiance from './components/BtnCall/GetTagedAudiance'
+import RemoveTag from './components/BtnCall/RemoveTag'
+import RemoveBulkTag from './components/BtnCall/RemoveBulkTag'
+import AddbulkTag from './components/BtnCall/AddbulkTag'
 
 
 export default function Home() {
@@ -32,58 +37,17 @@ export default function Home() {
     <hr/>
     <GetAllMembers/>
     <hr/>
-    <Cleanup/>
+    
      <h2>clean up</h2>
-      <div className={styles.description}>
-        <BtnCall
-        call='cleanUp'
-        name='clean up'
-        />
-        </div>
+     <Cleanup/>
       <h2>tags</h2>
-    <div className={styles.description}>        
-      <BtnCall
-      call='tagAudiance'
-      name='tag audiance'
-      />
-      <BtnCall
-      call='getTagedAudiance'
-      name='get tag audiance'
-      />
-      <BtnCall
-      call='removeTag'
-      name='remove tag audiance'
-      />
-      <BtnCall
-      call='removeBulkTag'
-      name='remove bulk'/>
-      <BtnCall
-      call='addbulkTag'
-      name='tag bulk'/>
-      
-      </div>
+      <TagAudiance/>
+      <GetTagedAudiance/>
+      <RemoveTag/>
+      <RemoveBulkTag/>
+      <AddbulkTag/>
+
     </main>
   )
 }
 
-
-  // // State to store footer contact information
-  // const [footerContactInfo, setFooterContactInfo] = useState({
-  //   company: "Bassmint studios",           // Company name
-  //   address1: "405 N Angier Ave NE",        // Address line 1
-  //   city: "Atlanta",                        // City
-  //   state: "GA",                            // State
-  //   zip: "30308",                           // Zip code
-  //   country: "US",                          // Country
-  // });
-
-  // // State to store default campaign settings
-  // const [campaignDefaults, setCampaignDefaults] = useState({
-  //   from_name: "Gettin' Together",          // Default 'from' name
-  //   from_email: "tumidev267@gmail.com",     // Default 'from' email
-  //   subject: "JS Developers Meetup",        // Default email subject
-  //   language: "EN_US",                      // Language setting
-  // });
-
-  // // State to store event information (used for audience name)
-  // const [event, setEvent] = useState({ name: "JS Developers Meetup" });

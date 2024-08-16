@@ -31,17 +31,7 @@ function GetAllMembers() {
      console.error('Error fetching data:', error);
    }
  };
- const handleSubmit = async (event) => {
-   event.preventDefault()
-   // Handle the submission of the form with the audience data
-   const res=await fetch('/api/addBulkContact',{
-     method:'POST',
-     headers:{'Content-Type':'application/json'},
 
-   })
-   const msg=await res.json()
-   console.log(msg)
- }
  return (
    <div>
      <button onClick={getAudience}>Get All Members</button>
