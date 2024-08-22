@@ -11,7 +11,9 @@ export async function POST(req) {
     const details= await req.json()
     try {
         // Fetch the list of all members
-        const listdata = await fetch(`${process.env.DomainURL}/api/getAllMembers`, {
+        const dev = process.env.NODE_ENV !== 'production';
+        const baseurl = dev ? 'http://localhost:3000' : 'https://mail-chimp-cleanup2024.vercel.app';
+        const listdata = await fetch(`${baseurl}/api/getAllMembers`, {
             method: "POST",
             headers: {
                 'Content-Type': 'application/json'

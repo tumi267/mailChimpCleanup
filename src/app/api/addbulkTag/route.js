@@ -9,7 +9,9 @@ export async function POST(req) {
 
     try {
         // Fetch the audience data
-        const response = await fetch(`${process.env.DomainURL}/api/getAudiance`, {
+        const dev = process.env.NODE_ENV !== 'production';
+        const baseurl = dev ? 'http://localhost:3000' : 'https://mail-chimp-cleanup2024.vercel.app';
+        const response = await fetch(`${baseurl}/api/getAudiance`, {
             method: 'POST',
             headers: {
                 "Content-Type": "application/json", // Content type header

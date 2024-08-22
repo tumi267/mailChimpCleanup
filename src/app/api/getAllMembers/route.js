@@ -9,7 +9,9 @@ export async function POST(req) {
     });
 
     try {
-        const listdata=await fetch(`${process.env.DomainURL}/api/getAudiance`,{
+        const dev = process.env.NODE_ENV !== 'production';
+        const baseurl = dev ? 'http://localhost:3000' : 'https://mail-chimp-cleanup2024.vercel.app';
+        const listdata=await fetch(`${baseurl}/api/getAudiance`,{
             method:"POST",
             headers:{
                 'Content-Type':'application/json'
@@ -33,10 +35,6 @@ export async function POST(req) {
             });
             
         }
-      
-       
-
-
         return NextResponse.json({newList,lists }, { status: 200 });
     } catch (error) {
         console.error('Error fetching members:', error);
