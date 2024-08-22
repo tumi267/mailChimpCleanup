@@ -43,7 +43,7 @@ export async function POST(req) {
 
         // If tag doesn't exist, create it
         if (!tag) {
-            console.log(`Tag "${tagName}" not found, creating it...`);
+  
             const newTag = {
                 name: tagName,
                 static_segment: [], // Initially create the tag with no members

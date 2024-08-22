@@ -15,7 +15,6 @@ export async function POST(req) {
     try {
 
         const response=await mailchimp.lists.getAllLists();
-
         // Return a success message along with the response data
         return NextResponse.json({ 
             // msg: `Successfully created an audience. The audience id is ${response}.`, 

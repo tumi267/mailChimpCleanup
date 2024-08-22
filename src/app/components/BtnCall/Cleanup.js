@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-
+import styles from './card.module.css'
 function Cleanup() {
     const [details,setDetails]=useState({
         name: "",
@@ -30,70 +30,83 @@ function Cleanup() {
         alert(msg.msg)
       }
   return (
-    <div>Clean up
+    <div className={styles.contain}>
+      <br/>
+      <h3>Clean up</h3>
+      <br/>
  <form onSubmit={handleSubmit}>
         <input
+        className={styles.inputBar}
           type="text"
           placeholder="name"
           value={details.name}
           onChange={(e) => setDetails({ ...details, name: e.target.value })}
         />
         <input
+        className={styles.inputBar}
           type="text"
           placeholder="company"
           value={details.company}
           onChange={(e) => setDetails({ ...details, company: e.target.value })}
         />
-                <input
+        <input
+          className={styles.inputBar}
           type="text"
           placeholder="address1"
           value={details.address1}
           onChange={(e) => setDetails({ ...details, address1: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="city"
           value={details.city}
           onChange={(e) => setDetails({ ...details, city: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="state"
           value={details.state}
           onChange={(e) => setDetails({ ...details, state: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="zip"
           value={details.zip}
           onChange={(e) => setDetails({ ...details, zip: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="country"
           value={details.country}
           onChange={(e) => setDetails({ ...details, country: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="from_name"
           value={details.from_name}
           onChange={(e) => setDetails({ ...details, from_name: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="email"
           placeholder="from_email"
           value={details.from_email}
           onChange={(e) => setDetails({ ...details, from_email: e.target.value })}
         />
-                <input
+        <input
+        className={styles.inputBar}
           type="text"
           placeholder="subject"
           value={details.subject}
           onChange={(e) => setDetails({ ...details, subject: e.target.value })}
         />
-
-        <button type="submit">Submit</button>
+        <br/>
+        <button className={styles.btn} type="submit">Submit</button>
       </form>
 
     </div>

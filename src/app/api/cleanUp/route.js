@@ -38,7 +38,6 @@ export async function POST(req) {
                 return true; // Include this item as it's the first occurrence
             }
         }).map(e => emailTracker[e.member.email_address]);
-
         // Create a new audience
    
         const newAudience = await fetch(`${process.env.DomainURL}/api/createAudiance`, {
@@ -64,8 +63,8 @@ export async function POST(req) {
                     status_if_new: "subscribed",
                     status: "subscribed",
                     merge_fields: {
-                        FNAME: member.firstName,
-                        LNAME: member.lastName
+                        FNAME: member.merge_fields.FNAME,
+                        LNAME: member.merge_fields.LNAME
                     }
                 });
 
@@ -87,7 +86,6 @@ export async function POST(req) {
                     let tag = res1.segments.find(segment => segment.name === e.tags);
 
                     if (!tag) {
-                        console.log(`Tag "${e.tags}" not found, creating it...`);
                         const newTag = {
                             name: e.tags,
                             static_segment: [],
@@ -105,7 +103,6 @@ export async function POST(req) {
                     await mailchimp.lists.batchSegmentMembers(body, listId, tagId);
                 }
 
-                console.log(`Successfully added/updated subscriber: ${member.email_address}`);
             } catch (error) {
                 console.error(`Error adding/updating subscriber: ${member.email_address}`, error);
             }
@@ -115,6 +112,6 @@ export async function POST(req) {
         return NextResponse.json({ msg: `${uniqueEmails.length} unique emails processed` }, { status: 200 });
     } catch (error) {
         console.error("Error:", error);
-        return NextResponse.json({ msg: 'Oops, something went wrong', error: error.message }, { status: 400 });
+        return NextResponse.json({ msg: 'Oops, something went wrong',  }, { status: 400 });
     }
 }

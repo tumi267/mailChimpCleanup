@@ -8,30 +8,13 @@ export async function POST(req){
         server: process.env.prefix,     // Mailchimp server prefix (e.g., 'us1')
     });
     const reqData=await req.json()
-    
+    const {memberToRemove,listId,tagName}=reqData
     try {
-        // Fetch the audience data
-        const listdata = await fetch(`${process.env.DomainURL}/api/getAudiance`, {
-            method: "POST",
-            headers: {
-                'Content-Type': 'application/json'
-            }
-        });
     
-        const { data } = await listdata.json();
-        const { lists } = data;
-        const truelist=lists.filter((e)=>{return e.name==reqData.name})
-    
-        if (truelist.length === 0) {
-            // Handle the case where the audience does not exist
-            return NextResponse.json({ msg: 'Audience does not exist.' }, { status: 404 });
-        }
-        
-        const listId=truelist[0].id
         const res = await mailchimp.lists.listSegments(listId, {
           type: "static",  // Static segments represent tags in Mailchimp
         });
-        const {email}=reqData
+        const email=memberToRemove.map(e=>e.email_address)
         const body = {
             members_to_remove: [...email]
           };
@@ -44,8 +27,9 @@ export async function POST(req){
                 listId,
                 tagId
               );
-        return NextResponse.json({msg:`Successfully untagged ${response.total_removed} contacts`},{status:200})
+        return NextResponse.json({msg:`Successfully untagged  contacts`},{status:200})
         } else {
+     
         return NextResponse.json({msg:`Tag "${tagName}" not found`},{status:200})
         }
       } catch (error) {

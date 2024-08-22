@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from "react"
-
+import styles from './card.module.css'
 function RemoveTag() {
     const [details,setDetails]=useState({name:'',email:'',tagName:''})
     const handleSubmit = async (event) => {
@@ -16,15 +16,18 @@ function RemoveTag() {
         alert(msg.msg)
       }
   return (
-    <div>Remove Tag 
+    <div className={styles.contain}>
+      <br/>
+      <h3>Remove Tag</h3> 
+      <br/>
         <form onSubmit={handleSubmit}>
-            <input type="text" value={details.name} placeholder="audiance name" onChange={(e)=>{setDetails({...details,name:e.target.value})}}/>
+            <input className={styles.inputBar} type="text" value={details.name} placeholder="audiance name" onChange={(e)=>{setDetails({...details,name:e.target.value})}}/>
 
-            <input type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
+            <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
 
-            <input type="email" value={details.email} placeholder="audiance member email" onChange={(e)=>{setDetails({...details,email:e.target.value})}}/>
-
-            <button type="submit">submit</button>
+            <input className={styles.inputBar} type="email" value={details.email} placeholder="audiance member email" onChange={(e)=>{setDetails({...details,email:e.target.value})}}/>
+            <br/>
+            <button className={styles.btn} type="submit">submit</button>
         </form>
     </div>
   )

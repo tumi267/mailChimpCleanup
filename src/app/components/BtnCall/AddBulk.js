@@ -3,7 +3,7 @@
 import { useState, useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
 import * as XLSX from 'xlsx'
-
+import styles from './card.module.css'
 function AddBulk() {
   const [audiance, setAudiance] = useState({
     name: '',
@@ -56,11 +56,13 @@ function AddBulk() {
   }
 
   return (
-    <div>
+    <div className={styles.contain}>
+      <br/>
       <form onSubmit={handleSubmit}>
         <input
+        className={styles.inputBar}
           type="text"
-          placeholder="name"
+          placeholder="name of audiance"
           value={audiance.name}
           onChange={(e) => setAudiance({ ...audiance, name: e.target.value })}
         />
@@ -68,11 +70,14 @@ function AddBulk() {
           <input {...getInputProps()} />
           {
             isDragActive ?
-              <p>Drop the files here ...</p> :
+            <div className={styles.box}>
+              <p>Drop the files here ...</p> 
+              </div>:<div className={styles.box}>
               <p>Drag &apos;n&apos; drop some files here, or click to select files</p>
+              </div>
           }
         </div>
-        <button type="submit">Submit</button>
+        <button className={styles.btn} type="submit">Submit</button>
       </form>
       {audiance.members.length>0&&<div>{JSON.stringify(audiance.members)}</div>}
     </div>

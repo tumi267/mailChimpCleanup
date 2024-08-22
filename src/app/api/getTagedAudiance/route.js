@@ -32,8 +32,8 @@ export async function POST(req){
 
         const res = await mailchimp.lists.getListMemberTags(listId, subscriberHash);
    
-       
-        // console.log(`Urist has been tagged ${res.total_items} times.`);
+       console.log(res)
+        console.log(`Urist has been tagged ${res.total_items} times.`);
 
         // Return a success response
         return NextResponse.json({ msg: 'Tags updated successfully' ,res}, { status: 200 });

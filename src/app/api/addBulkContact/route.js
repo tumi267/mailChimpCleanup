@@ -47,9 +47,6 @@ export async function POST(req) {
             update_existing: true // Update existing members if they already exist
         });
 
-        // Handle the response
-        console.log(`Successfully processed ${response.total_created} new and ${response.total_updated} existing subscribers.`);
-
         return NextResponse.json({
             msg: `Successfully processed ${response.total_created} new and ${response.total_updated} existing subscribers.`
         }, { status: 200 });

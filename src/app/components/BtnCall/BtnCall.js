@@ -20,7 +20,7 @@ function BtnCall({ call, name ,data}) {
 
       // Parse the JSON response
       const data = await res.json();
-      console.log(data); // Log the response data to the console
+   
 
     } catch (error) {
       // Log any errors that occur during the fetch

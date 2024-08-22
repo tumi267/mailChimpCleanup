@@ -1,0 +1,73 @@
+.inputBar,
+.contain{
+ text-align: center;
+}
+.box,
+.contain{
+background-color: rgb(253, 253, 253);
+border: 2px solid black;
+align-items: center;
+font-size: larger;
+font-weight: 600;
+}
+.menu_contain,
+.contain{
+    width: 600px;
+    margin: 0 auto;
+}
+.box{
+    display: flex;
+    width: 500px;  
+    height: 300px;
+    margin: 1em auto;
+    align-items: center;
+    text-align: center;
+}
+.inputBar{
+    width: 320px;
+}
+.btn2,
+.btn,
+.inputBar{
+    height: 50px;
+    margin-bottom: 1em;
+}
+
+.btn2,
+.btn{
+width: 90px;
+background-color: aqua;
+font-weight: 800;
+border-radius: 11%;
+box-shadow:  10px 10px 24px rgba(85, 149, 149, 0.6);;
+}
+.btn2{
+    background-color: rgb(225, 255, 0);  
+}
+.btn:hover{
+    width: 120px;
+    height: 60px;
+    color: antiquewhite;
+    background-color: rgb(0, 119, 255);
+    font-weight: 800;
+    border-radius: 11%;
+    box-shadow:  15px 15px 24px rgba(85, 149, 149, 0.6);;
+    }
+.listdata,
+.menu_contain,
+.submenu{
+    display: grid;
+    }
+.listdata{
+    grid-template-columns: repeat(2,1fr);
+    }
+.submenu{
+    grid-template-columns: repeat(3,1fr);
+}
+.menu_contain{
+    grid-template-columns: repeat(7,1fr); 
+}
+.tables{
+    width: 600px;
+    gap: 1em;
+}

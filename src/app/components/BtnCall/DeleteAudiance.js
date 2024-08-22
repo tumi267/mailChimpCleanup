@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-
+import styles from './card.module.css'
 function DeleteAudiance() {
     const [name, setName] = useState('')
     const handleSubmit = async (event) => {
@@ -15,17 +15,20 @@ function DeleteAudiance() {
         alert(msg.msg)
       }
   return (
-    <div>Delete Audiance
-
+    <div className={styles.contain}>
+      <h3>Delete Audiance</h3>
+    <br/>
     <form onSubmit={handleSubmit}>
         <input
+        className={styles.inputBar}
           type="text"
-          placeholder="name"
+          placeholder="Name Of Audiance"
           value={name}
           onChange={(e) => setName(e.target.value)}
         />
-
-        <button type="submit">Submit</button>
+        <br/>
+        <br/>
+        <button className={styles.btn} type="submit">Submit</button>
       </form>
     
     </div>

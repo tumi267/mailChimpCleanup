@@ -41,7 +41,7 @@ try {
               ],
             })
        
-        console.log(res);
+      
 
         // Return a success response
         return NextResponse.json({ msg: 'Tags removed successfully' }, { status: 200 });

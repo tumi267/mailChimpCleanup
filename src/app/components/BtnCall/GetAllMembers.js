@@ -1,6 +1,6 @@
 'use client'
 import React, { useState } from 'react'
-
+import styles from './card.module.css'
 function GetAllMembers() {
  // State to store the list of audiences
  const [lists, setLists] = useState([]);
@@ -36,11 +36,24 @@ function GetAllMembers() {
    <div>
      <button onClick={getAudience}>Get All Members</button>
      {lists.length > 0 && (
-       <div>
-         {lists.map((e, i) => (
-           <div key={i}><p>{e.member.full_name}&nbsp;-&nbsp;{e.member.email_address}</p></div>
+       <table className={styles.tables}>
+        <thead>
+        <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>Tags</th>
+        </tr>
+        </thead>
+        <tbody>
+         {lists.map((e, i) => (<tr key={i}>
+              <td>{e.member.full_name}</td>
+              <td>{e.member.email_address}</td>
+              <td>{e.member.tags.map((y,j)=>{return <span key={j}>{y.name}</span>})}</td>
+              </tr>
+              
          ))}
-       </div>
+         </tbody>
+       </table>
      )}
    </div>
  );

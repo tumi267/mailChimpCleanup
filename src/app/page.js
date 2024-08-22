@@ -15,38 +15,14 @@ import GetTagedAudiance from './components/BtnCall/GetTagedAudiance'
 import RemoveTag from './components/BtnCall/RemoveTag'
 import RemoveBulkTag from './components/BtnCall/RemoveBulkTag'
 import AddbulkTag from './components/BtnCall/AddbulkTag'
+import Maincontent from './components/BtnCall/maincontent'
 
 
 export default function Home() {
 
   return (
     <main className={styles.main}>
-    <GetAudience/>
-    <hr/>
-    <CreateAudiance/>
-    <hr/>
-    <AddBulk/>
-    <hr/>
-    <DeleteAudiance/>
-    <hr/>
-    <AddContact/>
-    <hr/>
-    <CheckSub/>
-    <hr/>
-    <Unsubcribe/>
-    <hr/>
-    <GetAllMembers/>
-    <hr/>
-    
-     <h2>clean up</h2>
-     <Cleanup/>
-      <h2>tags</h2>
-      <TagAudiance/>
-      <GetTagedAudiance/>
-      <RemoveTag/>
-      <RemoveBulkTag/>
-      <AddbulkTag/>
-
+    <Maincontent/>
     </main>
   )
 }
