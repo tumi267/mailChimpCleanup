@@ -14,7 +14,7 @@ import RemoveBulkTag from "./RemoveBulkTag"
 import RemoveTag from "./RemoveTag"
 import TagAudiance from "./TagAudiance"
 import Unsubcribe from "./Unsubcribe"
-import Menu from "./menu"
+import Menu from "./Menu"
 
 function Maincontent() {
   const [rendercontent,setrendercontent]=useState(0)
