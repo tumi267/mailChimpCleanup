@@ -1,11 +1,11 @@
 'use client'
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function GetAudience() {
   // State to store the list of audiences
   const [lists, setLists] = useState([]);
-
+  const [members,setmembers]=useState([])
   const getAudience = async () => {
     try {
       // Make a POST request to the API route
@@ -33,17 +33,49 @@ function GetAudience() {
     }
   };
 
+  const getAudlist=async (e)=>{
+
+    const reqData={stats:e.stats.member_count,id:e.id}
+    const res=await fetch('/api/getSingelAudiancemembers',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify(reqData)
+    })
+    const msg=await res.json()
+    setmembers(msg.members)
+    }
+    useEffect(()=>{getAudience()},[])
   return (
     <div>
-      <button onClick={getAudience}>Get Audience</button>
+      
       {lists.length > 0 && (
         <div>
           {lists.map((e, i) => (
-            <div key={i}>{e.name}</div>
+            <div key={i} onClick={()=>{getAudlist(e)}}>{e.name}</div>
           ))}
         </div>
       )}
-    </div>
+     
+      
+      <table >
+        <thead>
+        <tr>
+        {members.length>0&&<th>name</th>}
+        {members.length>0&&<th>email</th>}
+        {members.length>0&&<th>Status</th>}
+        </tr>
+        </thead>
+        
+        <tbody>
+        {members.length>0&&members.map((e,i)=>{return  <tr key={i}>
+              <td>{e.full_name}</td>
+              <td>{e.email_address}</td>
+              <td>{e.status}</td>
+              </tr>
+            })}
+         </tbody>
+       </table>  
+      </div>
   );
 }
 
