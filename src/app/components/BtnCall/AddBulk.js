@@ -1,15 +1,18 @@
 'use client'
 
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { useDropzone } from 'react-dropzone'
 import * as XLSX from 'xlsx'
 import styles from './card.module.css'
+import getAudience from '@/app/libs/getAudience'
 function AddBulk() {
   const [audiance, setAudiance] = useState({
     name: '',
     members: []
   })
-
+ 
+  const [lists, setLists] = useState([]);
+  const [selectedMemberIndex, setSelectedTab] = useState(0);
   const onDrop = useCallback((acceptedFiles) => {
     acceptedFiles.forEach((file) => {
       const reader = new FileReader()
@@ -53,20 +56,31 @@ function AddBulk() {
     })
     const msg=await res.json()
     alert(msg.msg)
+    
   }
 
+  const handleMemberSelection=(index,ele)=>{
+    setSelectedTab(index);
+    setAudiance({ ...audiance, name: ele.name })
+  }
+  useEffect(()=>{getAudience(setLists)},[])  
   return (
     <div className={styles.contain}>
       <br/>
       <form onSubmit={handleSubmit}>
-        change to select audiance name
-        <input
-        className={styles.inputBar}
-          type="text"
-          placeholder="name of audiance"
-          value={audiance.name}
-          onChange={(e) => setAudiance({ ...audiance, name: e.target.value })}
-        />
+      {lists.length > 0 && (
+        <div>
+          {lists.map((e, i) => (<div key={i}><label>
+            <input type='radio' value={e.name}
+            checked={selectedMemberIndex === i}
+            onChange={() => handleMemberSelection(i,e)}/>
+            {e.name}
+          </label>
+          </div>
+
+          ))}
+        </div>
+      )}
         <div {...getRootProps()}>
           <input {...getInputProps()} />
           {

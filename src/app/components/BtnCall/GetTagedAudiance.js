@@ -1,10 +1,15 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import styles from './card.module.css'
+import getAudience from "@/app/libs/getAudience"
+import getAudlist from "@/app/libs/getAudlist"
 function GetTagedAudiance() {
     const [details,setDetails]=useState({name:'',email:''})
     const [tagData,setTagData]=useState({tags:[],total_items:0})
+    const [lists, setLists] = useState([]);
+    const [members,setmembers]=useState([])
+    const [selectedMemberIndex, setSelectedTab] = useState(0);
     const handleSubmit = async (event) => {
         event.preventDefault()
         // Handle the submission of the form with the audience data
@@ -14,17 +19,50 @@ function GetTagedAudiance() {
           body:JSON.stringify(details)
         })
         const msg=await res.json()
-        setTagData(msg?.res)
-
+        if(msg?.res.tags.length==0){
+          alert('no data found')
+        }else{
+          setTagData(msg?.res)
+        }
+      }
+      useEffect(()=>{getAudience(setLists)},[])
+      const handleMemberSelection=(index,ele)=>{
+        setSelectedTab(index);
       }
   return (
     <div className={styles.contain}>
       <h3>Get Taged Audiance</h3>
-
+      {/* add css logic */}
+      add click logic
+      {lists.length > 0 && (
+        <div>
+          {lists.map((e, i) => (
+            <div key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({...details,name:e.name})}}>{e.name}</div>
+          ))}
+        </div>
+      )}
+       <table >
+        <thead>
+        <tr>
+        {members.length>0&&<th>name</th>}
+        {members.length>0&&<th>email</th>}
+    
+        </tr>
+        </thead>
+        
+        <tbody>
+        {members.length>0&&members.map((e,i)=>{return <tr key={i} onClick={()=>{setDetails({...details,email:e.email_address})}}>
+        <input type='radio' value={e.full_name}
+        checked={selectedMemberIndex === i}
+        onChange={() => handleMemberSelection(i,e)}/>
+        <td>{e.full_name}</td>
+        <td>{e.email_address}</td>
+        </tr>
+        })}
+         </tbody>
+       </table>  
         <form onSubmit={handleSubmit}>
-            <input className={styles.inputBar} type="text" value={details.name} placeholder="audiance name" onChange={(e)=>{setDetails({...details,name:e.target.value})}}/>
-            <input className={styles.inputBar} type="email" value={details.email} placeholder="email" onChange={(e)=>{setDetails({...details,email:e.target.value})}}/>
-            <br/>
+
             <button className={styles.btn} type="submit">submit</button>
         </form>
         {tagData?.tags.length>0&&<div >

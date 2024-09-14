@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import styles from './card.module.css'
+import getAudlist from "@/app/libs/getAudlist"
 function TagAudiance() {
     const [details,setDetails]=useState({name:'',email:'',tagName:''})
     const[lists,setLists]=useState([])
@@ -46,17 +47,7 @@ function TagAudiance() {
           console.error('Error fetching data:', error);
         }
       };
-      const getAudlist=async (e)=>{
 
-        const reqData={stats:e.stats.member_count,id:e.id}
-        const res=await fetch('/api/getSingelAudiancemembers',{
-          method:'POST',
-          headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(reqData)
-        })
-        const msg=await res.json()
-        setmembers(msg.members)
-        }
       // Handle radio button change
       const handleMemberSelection = (index) => {
         setSelectedTab(index);
@@ -66,30 +57,27 @@ function TagAudiance() {
       },[])
   return (
     <div className={styles.contain}>
-      <h3>Tag Audiance</h3>
+      <h3>Tag Audiance Member</h3>
         <form onSubmit={handleSubmit}>
            
             {lists.map((e, i) => (
-            <div key={i} onClick={()=>{getAudlist(e)
+            <div key={i} onClick={()=>{getAudlist(e,setmembers)
               setDetails({...details,name:e.name})
             }}>
               {e.name}
               </div>
           ))}
-
+          <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
             {members.length>0&&members.map((e,i)=>{return<div key={i}><label  onClick={()=>{setDetails({...details,email:e.email_address})}}>
               <input
                 type="radio"
                 checked={selectedMemberIndex === i}
                 onChange={() => handleMemberSelection(i)}
             />
-            {e.full_name}
+            {e.full_name}-{e.email_address}
             </label>
             </div>
               })}
-           
-            <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
-
             <br/>
             <button className={styles.btn} type="submit">submit</button>
         </form>

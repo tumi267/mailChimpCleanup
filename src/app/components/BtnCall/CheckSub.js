@@ -1,11 +1,16 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './card.module.css'
+import getAudience from '../../libs/getAudience'
+import getAudlist from '@/app/libs/getAudlist'
 function CheckSub() {
   const [details,setDetails]=useState({
     name:"",
     email: "",
   })
+      // State to store the list of audiences
+  const [lists, setLists] = useState([]);
+  const [members,setmembers]=useState([])
   const handleSubmit = async (event) => {
     event.preventDefault()
     // Handle the submission of the form with the audience data
@@ -17,25 +22,40 @@ function CheckSub() {
     const msg=await res.json()
     alert(msg.msg)
   }
+
+      useEffect(()=>{getAudience(setLists)},[])
   return (
     <div className={styles.contain}>
       <h3>Check Subcriber</h3>
       <br/>
 <form onSubmit={handleSubmit}>
-        <input 
-        className={styles.inputBar}
-          type="text"
-          placeholder="name of audiacne"
-          value={details.name}
-          onChange={(e) => setDetails({ ...details, name: e.target.value })}
-        />
-        <input
-          className={styles.inputBar}
-          type="email"
-          placeholder="email of member"
-          value={details.email}
-          onChange={(e) => setDetails({ ...details, email: e.target.value })}
-        />
+    {lists.length > 0 && (
+        <div>
+          {lists.map((e, i) => (
+            <div key={i} onClick={()=>{getAudlist(e,setmembers)}}>{e.name}</div>
+          ))}
+        </div>
+      )}
+       <table >
+        <thead>
+        <tr>
+        {members.length>0&&<th>name</th>}
+        {members.length>0&&<th>email</th>}
+     
+        </tr>
+        </thead>
+        
+        <tbody>
+          {/* onclick open status */}
+        {members.length>0&&members.map((e,i)=>{return  <tr key={i}>
+              <td>{e.full_name}</td>
+              <td>{e.email_address}</td>
+              {/* <td>{e.status}</td> */}
+              </tr>
+            })}
+         </tbody>
+       </table>  
+
         <br/>
         <button className={styles.btn} type="submit">Submit</button>
       </form>

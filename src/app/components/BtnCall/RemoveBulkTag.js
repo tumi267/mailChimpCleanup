@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react"
 import styles from './card.module.css'
+import getAudlist from "@/app/libs/getAudlist"
 function RemoveBulkTag() {
     const [aud,setAud]=useState([])
     const [members,setmembers]=useState([])
@@ -24,17 +25,7 @@ useEffect(()=>{
     }
     res()
 },[])
-const getAudlist=async (e)=>{
 
-const reqData={stats:e.stats.member_count,id:e.id}
-const res=await fetch('/api/getSingelAudiancemembers',{
-  method:'POST',
-  headers:{'Content-Type':'application/json'},
-  body:JSON.stringify(reqData)
-})
-const msg=await res.json()
-setmembers(msg.members)
-}
 const memberArry=(e)=>{
 
   setmemberstoRemove((prev) => {
@@ -70,7 +61,7 @@ const handleRemoveBulkTag=async()=>{
         <div className={styles.submenu}>{aud?.map((e,i)=>{
             return <div key={i}>
                 <p onClick={()=>{
-                    getAudlist(e)
+                    getAudlist(e,setmembers)
                     setListId(e.id)
                 }}>{e.name}</p>
             </div>

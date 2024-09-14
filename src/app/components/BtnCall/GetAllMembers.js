@@ -5,7 +5,7 @@ function GetAllMembers() {
  // State to store the list of audiences
  const [lists, setLists] = useState([]);
 useEffect(()=>{
-  const getAudience = async () => {
+  const getAllMembers = async () => {
     try {
       // Make a POST request to the API route
       const res = await fetch(`/api/getAllMembers`, {
@@ -31,7 +31,7 @@ useEffect(()=>{
       console.error('Error fetching data:', error);
     }
   };
-  getAudience()
+  getAllMembers()
 },[])
  
 
