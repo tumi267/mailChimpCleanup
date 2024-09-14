@@ -1,6 +1,7 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './card.module.css'
+import getAudience from '@/app/libs/getAudience'
 function AddContact() {
   const [details,setDetails]=useState({
     name:"",
@@ -9,6 +10,8 @@ function AddContact() {
     email: "",
     email_from:""
   })
+  const [lists, setLists] = useState([]);
+  const [selectedMemberIndex, setSelectedTab] = useState(0);
   const handleSubmit = async (event) => {
     event.preventDefault()
     // Handle the submission of the form with the audience data
@@ -20,19 +23,37 @@ function AddContact() {
     const msg=await res.json()
     alert(msg.msg)
   }
+  useEffect(()=>{getAudience(setLists)},[])
+  const handleMemberSelection=(index,ele)=>{
+    setSelectedTab(index);
+    setDetails({ ...details, name: ele.name })
+  }
   return (
     <div className={styles.contain}>
       
       <h3>Add Contact</h3>
 
   <form onSubmit={handleSubmit}>
-        <input
+  {lists.length > 0 && (
+        <div>
+          {lists.map((e, i) => (<div key={i}><label>
+            <input type='radio' value={e.name}
+            checked={selectedMemberIndex === i}
+            onChange={() => handleMemberSelection(i,e)}/>
+            {e.name}
+          </label>
+          </div>
+
+          ))}
+        </div>
+      )}
+        {/* <input
         className={styles.inputBar}
           type="text"
           placeholder="name of audiacne"
           value={details.name}
           onChange={(e) => setDetails({ ...details, name: e.target.value })}
-        />
+        /> */}
         <input
         className={styles.inputBar}
           type="text"

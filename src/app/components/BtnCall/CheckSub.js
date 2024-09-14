@@ -41,7 +41,7 @@ function CheckSub() {
         <tr>
         {members.length>0&&<th>name</th>}
         {members.length>0&&<th>email</th>}
-     
+        {members.length>0&&<th>status</th>}
         </tr>
         </thead>
         
@@ -50,7 +50,7 @@ function CheckSub() {
         {members.length>0&&members.map((e,i)=>{return  <tr key={i}>
               <td>{e.full_name}</td>
               <td>{e.email_address}</td>
-              {/* <td>{e.status}</td> */}
+              <td>{e.status}</td>
               </tr>
             })}
          </tbody>

@@ -17,6 +17,7 @@ function DeleteAudiance() {
         })
         const msg=await res.json()
         alert(msg.msg)
+        getAudience(setLists)
       }
 
       const handleMemberSelection=(index,ele)=>{

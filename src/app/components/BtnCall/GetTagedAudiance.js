@@ -31,9 +31,8 @@ function GetTagedAudiance() {
       }
   return (
     <div className={styles.contain}>
-      <h3>Get Taged Audiance</h3>
-      {/* add css logic */}
-      add click logic
+      <h3>Get Members Tags</h3>
+
       {lists.length > 0 && (
         <div>
           {lists.map((e, i) => (

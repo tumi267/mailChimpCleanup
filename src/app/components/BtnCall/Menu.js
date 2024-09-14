@@ -15,7 +15,7 @@ function Menu({prop}) {
         <button className={styles.btn2} onClick={()=>{prop(7)}}>Get All Members</button>
         <button className={styles.btn2} onClick={()=>{prop(8)}}>Clean up</button>
         <button className={styles.btn2} onClick={()=>{prop(9)}}>Tag Audiance</button>
-        <button className={styles.btn2} onClick={()=>{prop(10)}}>Get Taged Audiance</button>
+        <button className={styles.btn2} onClick={()=>{prop(10)}}>Get Member Tags</button>
         <button className={styles.btn2} onClick={()=>{prop(11)}}>Remove Tag</button>
         <button className={styles.btn2} onClick={()=>{prop(12)}}>Remove Bulk Tag</button>
         <button className={styles.btn2} onClick={()=>{prop(13)}}>Add bulk Tag</button>
