@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import styles from './card.module.css'
 import getAudlist from "@/app/libs/getAudlist"
+import getAudience from "@/app/libs/getAudience"
 function TagAudiance() {
     const [details,setDetails]=useState({name:'',email:'',tagName:''})
     const[lists,setLists]=useState([])
@@ -17,43 +18,15 @@ function TagAudiance() {
           body:JSON.stringify(details)
         })
         const msg=await res.json()
-        
         alert(msg.msg)
       }
-
-      const getAudience = async () => {
-        try {
-          // Make a POST request to the API route
-          const res = await fetch(`/api/getAudiance`, {
-            method: "POST",                       // HTTP method
-            headers: {
-              "Content-Type": "application/json", // Content type header
-            },
-            cache: "no-store",                    // Prevents caching of the response
-          });
-    
-          // Parse the JSON response
-          const data = await res.json();
-    
-          // Check if the response contains data and lists
-          if (data && data.data && data.data.lists) {
-            setLists(data.data.lists);
-          } else {
-            console.error('Unexpected response format:', data);
-          }
-    
-        } catch (error) {
-          // Log any errors that occur during the fetch
-          console.error('Error fetching data:', error);
-        }
-      };
 
       // Handle radio button change
       const handleMemberSelection = (index) => {
         setSelectedTab(index);
       };
       useEffect(()=>{
-        getAudience()
+        getAudience(setLists)
       },[])
   return (
     <div className={styles.contain}>
