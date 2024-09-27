@@ -19,7 +19,8 @@ function GetTagedAudiance() {
           body:JSON.stringify(details)
         })
         const msg=await res.json()
-        if(msg?.res.tags.length==0){
+  
+        if(msg?.res?.tags.length==0||msg.msg=='Error updating tags'){
           alert('no data found')
         }else{
           setTagData(msg?.res)
@@ -51,10 +52,11 @@ function GetTagedAudiance() {
         
         <tbody>
         {members.length>0&&members.map((e,i)=>{return <tr key={i} onClick={()=>{setDetails({...details,email:e.email_address})}}>
+        <td>
         <input type='radio' value={e.full_name}
         checked={selectedMemberIndex === i}
         onChange={() => handleMemberSelection(i,e)}/>
-        <td>{e.full_name}</td>
+        {e.full_name}</td>
         <td>{e.email_address}</td>
         </tr>
         })}
