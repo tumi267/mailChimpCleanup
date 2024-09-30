@@ -11,6 +11,7 @@ function CheckSub() {
       // State to store the list of audiences
   const [lists, setLists] = useState([]);
   const [members,setmembers]=useState([])
+  const [status,setStatus]=useState('')
   const handleSubmit = async (event) => {
     event.preventDefault()
     // Handle the submission of the form with the audience data
@@ -36,29 +37,44 @@ function CheckSub() {
           ))}
         </div>
       )}
-       <table >
+       <table className={styles.table}>
         <thead>
         <tr>
         {members.length>0&&<th>name</th>}
         {members.length>0&&<th>email</th>}
-        {members.length>0&&<th>status</th>}
+ 
         </tr>
         </thead>
         
         <tbody>
           {/* onclick open status */}
-        {members.length>0&&members.map((e,i)=>{return  <tr key={i}>
+        {members.length>0&&members.map((e,i)=>{return  <tr key={i} onClick={()=>{setStatus(e)}}>
               <td>{e.full_name}</td>
               <td>{e.email_address}</td>
-              <td>{e.status}</td>
               </tr>
             })}
          </tbody>
        </table>  
-
         <br/>
-        <button className={styles.btn} type="submit">Submit</button>
       </form>
+      {status!=''&&<div className={styles.model} onClick={()=>{setStatus('')}}>
+        <div className={styles.innerModel}>
+        <table className={styles.table}>
+        <thead>
+        <tr>
+        <th>name</th>
+        <th>email</th>
+        <th>status</th>
+        </tr>
+        </thead>
+          <tr >
+              <td>{status.full_name}</td>
+              <td>{status.email_address}</td>
+              <td>{status.status}</td>
+          </tr>
+          </table>
+              </div>
+        </div>}
     </div>
   )
 }
