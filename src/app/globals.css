@@ -105,3 +105,9 @@ a {
     color-scheme: dark;
   }
 }
+table{
+  width: 95%;  
+  text-align: left;
+  padding: 0px 5em;
+  gap: 2em;
+}

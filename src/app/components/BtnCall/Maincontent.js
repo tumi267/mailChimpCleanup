@@ -15,7 +15,7 @@ import RemoveTag from "./RemoveTag"
 import TagAudiance from "./TagAudiance"
 import Unsubcribe from "./Unsubcribe"
 import Menu from "./Menu"
-
+import styles from './card.module.css'
 function Maincontent() {
   const [rendercontent,setrendercontent]=useState(0)
     return (
@@ -23,6 +23,7 @@ function Maincontent() {
     <Menu
     prop={setrendercontent}
     />
+    <div className={styles.content}>
     {rendercontent==0&&<GetAudience/>}
     {rendercontent==1&&<CreateAudiance/>}
     {rendercontent==2&&<AddBulk/>}
@@ -37,6 +38,7 @@ function Maincontent() {
     {rendercontent==11&&<RemoveTag/>}
     {rendercontent==12&&<RemoveBulkTag/>}
     {rendercontent==13&&<AddbulkTag/>} 
+    </div>
     </div>
   )
 }

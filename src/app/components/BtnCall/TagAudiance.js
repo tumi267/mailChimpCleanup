@@ -29,17 +29,18 @@ function TagAudiance() {
         getAudience(setLists)
       },[])
   return (
-    <div className={styles.contain}>
+    <div >
       <h3>Tag Audiance Member</h3>
         <form onSubmit={handleSubmit}>
-           
+           <div className={styles.aud_list}>
             {lists.map((e, i) => (
-            <div key={i} onClick={()=>{getAudlist(e,setmembers)
+            <div className={styles.text_picker}  key={i} onClick={()=>{getAudlist(e,setmembers)
               setDetails({...details,name:e.name})
             }}>
-              {e.name}
+              <p className={styles.text_picker_font}>{e.name}</p>
               </div>
           ))}
+          </div>
           <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
             {members.length>0&&members.map((e,i)=>{return<div key={i}><label  onClick={()=>{setDetails({...details,email:e.email_address})}}>
               <input

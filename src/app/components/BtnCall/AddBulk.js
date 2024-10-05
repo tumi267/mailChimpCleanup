@@ -69,7 +69,7 @@ function AddBulk() {
       <br/>
       <form onSubmit={handleSubmit}>
       {lists.length > 0 && (
-        <div>
+        <div className={styles.aud_list}>
           {lists.map((e, i) => (<div key={i}><label>
             <input type='radio' value={e.name}
             checked={selectedMemberIndex === i}

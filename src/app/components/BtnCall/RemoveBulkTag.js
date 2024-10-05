@@ -53,14 +53,14 @@ const handleRemoveBulkTag=async()=>{
   console.log(msg)
 }
   return (
-    <div className={styles.contain}>
+    <div>
       <br/>
       <h3>Remove Bulk Tag</h3>
       <br/>
       <input className={styles.inputBar} type="text" placeholder="tag name" value={tagName} onChange={(e)=>{setTagName(e.target.value)}}/>
         <div className={styles.submenu}>{aud?.map((e,i)=>{
-            return <div key={i}>
-                <p onClick={()=>{
+            return <div className={styles.text_picker} key={i}>
+                <p className={styles.text_picker_font} onClick={()=>{
                     getAudlist(e,setmembers)
                     setListId(e.id)
                 }}>{e.name}</p>

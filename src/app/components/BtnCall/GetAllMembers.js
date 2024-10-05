@@ -39,15 +39,15 @@ useEffect(()=>{
    <div>
      
      {lists.length > 0 && (
-       <table className={styles.tables}>
+       <table >
         <thead>
         <tr>
-        <th>name</th>
-        <th>email</th>
-        <th>Tags</th>
+        <th className={styles.thead}>name</th>
+        <th className={styles.thead}>email</th>
+        <th className={styles.thead}>Tags</th>
         </tr>
         </thead>
-        <tbody>
+        <tbody >
          {lists.map((e, i) => (<tr key={i}>
               <td>{e.member.full_name}</td>
               <td>{e.member.email_address}</td>

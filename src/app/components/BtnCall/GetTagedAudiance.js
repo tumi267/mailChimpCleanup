@@ -22,6 +22,7 @@ function GetTagedAudiance() {
   
         if(msg?.res?.tags.length==0||msg.msg=='Error updating tags'){
           alert('no data found')
+          setTagData({tags:[],total_items:0})
         }else{
           setTagData(msg?.res)
         }
@@ -31,13 +32,13 @@ function GetTagedAudiance() {
         setSelectedTab(index);
       }
   return (
-    <div className={styles.contain}>
+    <div >
       <h3>Get Members Tags</h3>
 
       {lists.length > 0 && (
-        <div>
+        <div className={styles.aud_list}>
           {lists.map((e, i) => (
-            <div key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({...details,name:e.name})}}>{e.name}</div>
+            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({...details,name:e.name})}}><p className={styles.text_picker_font}>{e.name}</p></div>
           ))}
         </div>
       )}

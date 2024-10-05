@@ -28,12 +28,14 @@ function RemoveTag() {
       }
 
   return (
-    <div className={styles.contain}>
+    <div >
       <br/>
       <h3>Remove Tag</h3> 
       <br/>
       <hr/>
-      {lists.map((e,i)=>{return <div key={i} onClick={()=>{getAudlist(e,setmembers), setDetails({...details,name:e.name})}}>{e.name}</div>})}
+      <div className={styles.aud_list}>
+      {lists.map((e,i)=>{return <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers), setDetails({...details,name:e.name})}}><p className={styles.text_picker_font}>{e.name}</p></div>})}
+      </div>
       <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/> 
       <table >
         <thead>

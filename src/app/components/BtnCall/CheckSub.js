@@ -26,18 +26,18 @@ function CheckSub() {
 
       useEffect(()=>{getAudience(setLists)},[])
   return (
-    <div className={styles.contain}>
+    <div >
       <h3>Check Subcriber</h3>
       <br/>
 <form onSubmit={handleSubmit}>
     {lists.length > 0 && (
-        <div>
+        <div className={styles.aud_list}>
           {lists.map((e, i) => (
-            <div key={i} onClick={()=>{getAudlist(e,setmembers)}}>{e.name}</div>
+            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers)}}><p className={styles.text_picker_font}>{e.name}</p></div>
           ))}
         </div>
       )}
-       <table className={styles.table}>
+       <table>
         <thead>
         <tr>
         {members.length>0&&<th>name</th>}

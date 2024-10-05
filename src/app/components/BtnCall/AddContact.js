@@ -35,7 +35,7 @@ function AddContact() {
 
   <form onSubmit={handleSubmit}>
   {lists.length > 0 && (
-        <div>
+        <div className={styles.aud_list}>
           {lists.map((e, i) => (<div key={i}><label>
             <input type='radio' value={e.name}
             checked={selectedMemberIndex === i}
@@ -47,13 +47,7 @@ function AddContact() {
           ))}
         </div>
       )}
-        {/* <input
-        className={styles.inputBar}
-          type="text"
-          placeholder="name of audiacne"
-          value={details.name}
-          onChange={(e) => setDetails({ ...details, name: e.target.value })}
-        /> */}
+
         <input
         className={styles.inputBar}
           type="text"

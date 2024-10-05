@@ -3,7 +3,7 @@
 import getAudience from "@/app/libs/getAudience";
 import getAudlist from "@/app/libs/getAudlist";
 import { useEffect, useState } from "react";
-
+import styles from './card.module.css'
 function GetAudience() {
   // State to store the list of audiences
   const [lists, setLists] = useState([]);
@@ -12,11 +12,10 @@ function GetAudience() {
   useEffect(()=>{getAudience(setLists)},[])
   return (
     <div>
-      
       {lists.length > 0 && (
-        <div>
+        <div className={styles.aud_list}>
           {lists.map((e, i) => (
-            <div key={i} onClick={()=>{getAudlist(e,setmembers)}}>{e.name}</div>
+            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers)}}><p className={styles.text_picker_font}>{e.name}</p></div>
           ))}
         </div>
       )}
@@ -25,9 +24,11 @@ function GetAudience() {
       <table >
         <thead>
         <tr>
-        {members.length>0&&<th>name</th>}
-        {members.length>0&&<th>email</th>}
-        {members.length>0&&<th>Status</th>}
+     
+        {members.length>0&&<th >name</th>}
+        {members.length>0&&<th >email</th>}
+        {members.length>0&&<th >Status</th>}
+
         </tr>
         </thead>
         
