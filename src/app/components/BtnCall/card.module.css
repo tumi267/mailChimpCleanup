@@ -133,15 +133,7 @@
       width: 100%;
       max-width: 90%;
     }
-    .listdata {
-      grid-template-columns: 1fr; /* Single column on mobile */
-    }
-    .submenu {
-      grid-template-columns: 1fr; /* Single column on mobile */
-    }
-    .aud_list {
-      grid-template-columns: 1fr; /* Single column on mobile */
-    }
+
     .innerModel {
       width: 90%; /* Full width for mobile */
     }
@@ -155,4 +147,12 @@
       height: 60px;
     }
 
+  }
+  @media screen and (min-width: 768px) and (max-width: 1024px) {
+    .btn2{
+        height: 40px;
+        width: 58px;
+        font-size: 10px;
+        font-weight: 700;
+    }
   }
