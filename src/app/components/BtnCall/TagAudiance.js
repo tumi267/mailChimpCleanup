@@ -42,13 +42,14 @@ function TagAudiance() {
           ))}
           </div>
           <input className={styles.inputBar} type="text" value={details.tagName} placeholder="tag name" onChange={(e)=>{setDetails({...details,tagName:e.target.value})}}/>
-            {members.length>0&&members.map((e,i)=>{return<div key={i}><label  onClick={()=>{setDetails({...details,email:e.email_address})}}>
+            {members.length>0&&members.map((e,i)=>{return e.status=='subscribed'&&<div key={i}><label  onClick={()=>{setDetails({...details,email:e.email_address})}}>
               <input
                 type="radio"
                 checked={selectedMemberIndex === i}
                 onChange={() => handleMemberSelection(i)}
             />
             {e.full_name}-{e.email_address}
+           
             </label>
             </div>
               })}

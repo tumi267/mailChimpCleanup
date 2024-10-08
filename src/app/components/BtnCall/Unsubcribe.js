@@ -32,10 +32,11 @@ function Unsubcribe() {
       <br/>
       <h3>unsubcriber member</h3>
       <br/>
-      {lists.map((e,i)=>{return<div key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({ ...details, name: e.name })}}>
-        {e.name}
+      <div className={styles.aud_list}>
+      {lists.map((e,i)=>{return<div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({ ...details, name: e.name })}}>
+      <p className={styles.text_picker_font}>{e.name}</p> 
       </div>})}
-
+      </div>
       <table className={styles.table}>
         <thead>
         <tr>
@@ -48,7 +49,7 @@ function Unsubcribe() {
         <tbody>
           {/* onclick open status */}
         {members.length>0&&members.map((e,i)=>{return  e.status=='subscribed'&&
-        <tr key={i} onClick={()=>{setStatus(true),setDetails({ ...details, email: e.email_address })}}>
+        <tr className={styles.text_picker} key={i} onClick={()=>{setStatus(true),setDetails({ ...details, email: e.email_address })}}>
               <td>{e.full_name}</td>
               <td>{e.email_address}</td>
               </tr>

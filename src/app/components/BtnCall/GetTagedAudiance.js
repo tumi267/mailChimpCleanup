@@ -52,7 +52,7 @@ function GetTagedAudiance() {
         </thead>
         
         <tbody>
-        {members.length>0&&members.map((e,i)=>{return <tr key={i} onClick={()=>{setDetails({...details,email:e.email_address})}}>
+        {members.length>0&&members.map((e,i)=>{return e.status=='subscribed'&&<tr key={i} onClick={()=>{setDetails({...details,email:e.email_address})}}>
         <td>
         <input type='radio' value={e.full_name}
         checked={selectedMemberIndex === i}
@@ -67,7 +67,7 @@ function GetTagedAudiance() {
 
             <button className={styles.btn} type="submit">submit</button>
         </form>
-        {tagData?.tags.length>0&&<div >
+        {tagData?.tags.length>0&&<div className={styles.model} onClick={()=>{setTagData({tags:[],total_items:0})}}>
             <h3>total tags</h3>
             {tagData.tags.map((e,i)=>{return <div key={i}>
                 <p>id &nbsp;-&nbsp;{e.id}</p>
