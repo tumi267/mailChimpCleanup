@@ -1,10 +1,44 @@
 'use client'
-import React from 'react'
+import React, { useRef } from 'react'
 import styles from './card.module.css'
+import { useScroll, motion, useMotionValueEvent, useMotionValue } from "framer-motion"
 function Menu({prop}) {
+  const ref = useRef(null)
+    const { scrollY } = useScroll({
+        target: ref,
+        offset: ["start end", "end end"],
+    })
+    const opacity = useMotionValue(1)
+    const translateY = useMotionValue(0)
+
+    const getRefPosition = () => {
+      if (ref.current) {
+        const rect = ref.current.getBoundingClientRect()
+        return rect.top // Distance from the top of the viewport
+      }
+      return null
+    }
+    useMotionValueEvent(scrollY, "change", (latest) => {
+      
+      if(latest> scrollY.getPrevious()){
+      //  scroll up
+      if(getRefPosition() == 0){
+        opacity.set(0)
+        translateY.set(-100)
+      }
+      }else{
+        // scroll down
+      opacity.set(1)
+      translateY.set(0)
+      }
+    })
 
   return (
-    <div className={styles.menu_contain}>
+    <motion.div 
+    ref={ref} 
+    className={styles.menu_contain} 
+    style={{ opacity, y: translateY }}
+    transition={{ ease: "easeIn", duration: 0.75 }}>
         <button className={styles.btn2} onClick={()=>{prop(0)}}>Get Audience</button>
         <button className={styles.btn2} onClick={()=>{prop(1)}}>Create Audiance</button>
         <button className={styles.btn2} onClick={()=>{prop(2)}}>Add Bulk</button>
@@ -19,7 +53,7 @@ function Menu({prop}) {
         <button className={styles.btn2} onClick={()=>{prop(11)}}>Remove Tag</button>
         <button className={styles.btn2} onClick={()=>{prop(12)}}>Remove Bulk Tag</button>
         <button className={styles.btn2} onClick={()=>{prop(13)}}>Add bulk Tag</button>
-    </div>
+    </motion.div>
   )
 }
 

@@ -7,15 +7,22 @@ import styles from './card.module.css'
 function GetAudience() {
   // State to store the list of audiences
   const [lists, setLists] = useState([]);
-  const [members,setmembers]=useState([])
-
+  const [members,setmembers]=useState([]);
+  const [selectedMemberIndex, setSelectedTab] = useState(0);
+  // Handle radio button change
+  const handleMemberSelection = (index) => {
+    setSelectedTab(index);
+  };
   useEffect(()=>{getAudience(setLists)},[])
   return (
     <div>
       {lists.length > 0 && (
         <div className={styles.aud_list}>
           {lists.map((e, i) => (
-            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers)}}><p className={styles.text_picker_font}>{e.name}</p></div>
+            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers)}}><p className={styles.text_picker_font}>
+            <input type="radio"  
+            checked={selectedMemberIndex === i}
+            onChange={() => handleMemberSelection(i)}/> {e.name}</p></div>
           ))}
         </div>
       )}

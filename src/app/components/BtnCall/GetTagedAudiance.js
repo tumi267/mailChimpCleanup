@@ -10,6 +10,12 @@ function GetTagedAudiance() {
     const [lists, setLists] = useState([]);
     const [members,setmembers]=useState([])
     const [selectedMemberIndex, setSelectedTab] = useState(0);
+    const [selectedMemberIndex2, setSelectedTab2] = useState(0);
+  // Handle radio button change
+  const handleMemberSelection2 = (index) => {
+    setSelectedTab2(index);
+  };
+
     const handleSubmit = async (event) => {
         event.preventDefault()
         // Handle the submission of the form with the audience data
@@ -38,7 +44,11 @@ function GetTagedAudiance() {
       {lists.length > 0 && (
         <div className={styles.aud_list}>
           {lists.map((e, i) => (
-            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({...details,name:e.name})}}><p className={styles.text_picker_font}>{e.name}</p></div>
+            <div className={styles.text_picker} key={i} onClick={()=>{getAudlist(e,setmembers),setDetails({...details,name:e.name})}}><p className={styles.text_picker_font}>
+              <input type="radio"
+              checked={selectedMemberIndex2==i}
+              onChange={() => handleMemberSelection2(i)}/> 
+              {e.name}</p></div>
           ))}
         </div>
       )}
