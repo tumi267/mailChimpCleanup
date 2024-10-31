@@ -36,8 +36,8 @@ useEffect(()=>{
  
 
  return (
-   <div>
-     
+   <div className={styles.contain}>
+    <h2>Get All Members</h2> 
      {lists.length > 0 && (
        <table >
         <thead>

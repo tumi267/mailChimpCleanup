@@ -29,7 +29,7 @@ function TagAudiance() {
         getAudience(setLists)
       },[])
   return (
-    <div >
+    <div className={styles.contain}>
       <h3>Tag Audiance Member</h3>
         <form onSubmit={handleSubmit}>
            <div className={styles.aud_list}>

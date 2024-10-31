@@ -26,7 +26,7 @@ function CheckSub() {
 
       useEffect(()=>{getAudience(setLists)},[])
   return (
-    <div >
+    <div className={styles.contain}>
       <h3>Check Subcriber</h3>
       <br/>
 <form onSubmit={handleSubmit}>

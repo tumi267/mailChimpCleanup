@@ -53,7 +53,7 @@ const handleRemoveBulkTag=async()=>{
   console.log(msg)
 }
   return (
-    <div>
+    <div className={styles.contain}>
       <br/>
       <h3>Remove Bulk Tag</h3>
       <br/>

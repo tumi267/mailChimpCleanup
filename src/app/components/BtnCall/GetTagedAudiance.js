@@ -38,7 +38,7 @@ function GetTagedAudiance() {
         setSelectedTab(index);
       }
   return (
-    <div >
+    <div className={styles.contain}>
       <h3>Get Members Tags</h3>
 
       {lists.length > 0 && (

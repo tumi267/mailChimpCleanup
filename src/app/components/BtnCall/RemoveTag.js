@@ -28,7 +28,7 @@ function RemoveTag() {
       }
 
   return (
-    <div >
+    <div className={styles.contain}>
       <br/>
       <h3>Remove Tag</h3> 
       <br/>

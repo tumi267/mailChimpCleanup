@@ -15,7 +15,8 @@ function GetAudience() {
   };
   useEffect(()=>{getAudience(setLists)},[])
   return (
-    <div>
+    <div className={styles.contain}>
+      <h2>Get Audience</h2>
       {lists.length > 0 && (
         <div className={styles.aud_list}>
           {lists.map((e, i) => (
